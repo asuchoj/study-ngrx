@@ -8,7 +8,15 @@ import {Car, Cars} from './car.model';
 })
 export class AppComponent {
   public cars: Car[]  = [
-    new Car('Ford', '28.01.2019', 'Focus', false, 1),
+    new Car('Ford', '28.01.2019', 'Focus', true, 1),
     new Car('Audi', '08.08.12', 'A4', false, 2)
   ];
+
+  addCar(car){
+    this.cars.push(car)
+  }
+
+  onDelete(event: Car){
+    this.cars = this.cars.filter(car => car.id !== event.id);
+  }
 }

@@ -8,7 +8,7 @@ const initialState = {
   ]
 };
 
-export function carsReduer(state = initialState, action: AddCar) {
+export function carsReducer(state = initialState, action: AddCar) {
   switch (action.type) {
     case CAR_ACTION.ADD_CAR:
       return {

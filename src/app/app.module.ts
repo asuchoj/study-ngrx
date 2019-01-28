@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 
 import {CarsFormComponent } from './cars-form/cars-form.component';
 import {CarComponent} from './car/car.component';
-import {carsReduer} from './redux/cars.reducer';
+import {carsReducer} from './redux/cars.reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import {carsReduer} from './redux/cars.reducer';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({carPage: carsReduer})
+    StoreModule.forRoot({carPage: carsReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

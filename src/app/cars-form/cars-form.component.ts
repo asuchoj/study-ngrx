@@ -1,6 +1,11 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {Car} from '../car.model';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+
 import * as moment from 'moment';
+import {AppState} from '../redux/app.state';
+
+import {Car} from '../car.model';
+import {AddCar} from '../redux/cars.action';
 
 @Component({
   selector: 'app-cars-form',
@@ -8,12 +13,12 @@ import * as moment from 'moment';
   styleUrls: ['./cars-form.component.scss']
 })
 export class CarsFormComponent {
-  @Output() addCar: EventEmitter<Car> = new EventEmitter<Car>();
-
   carName: string = '';
   carModel: string = '';
 
   id: number = 2;
+
+  constructor(private store: Store<AppState>) {}
 
   onAdd(){
     if(this.carModel.length === 0 || this.carName.length === 0 ) return;
@@ -22,7 +27,7 @@ export class CarsFormComponent {
 
     let car: Car = new Car(this.carName, moment().format('DD.MM.YY'), this.carModel, false, this.id);
 
-    this.addCar.emit(car);
+    this.store.dispatch(new AddCar(car));
 
     this.carModel = '';
     this.carName = '';

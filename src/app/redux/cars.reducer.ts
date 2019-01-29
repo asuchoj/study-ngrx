@@ -20,6 +20,16 @@ export function carsReducer(state = initialState, action: CarsAction) {
         ...state,
         cars: [...state.cars.filter(cars => cars.id !== action.payload.id)]
       };
+    case CAR_ACTION.BUY_CAR:
+      return {
+        ...state,
+        cars: [...state.cars.map(cars => {
+          if(cars.id === action.payload.id){
+            cars.isSold = true;
+          }
+          return cars;
+        })]
+      };
     default:
       return state
   }

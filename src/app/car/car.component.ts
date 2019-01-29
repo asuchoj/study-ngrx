@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Car} from '../car.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../redux/app.state';
-import {DeleteCar} from '../redux/cars.action';
+import {BuyCar, DeleteCar} from '../redux/cars.action';
 
 @Component({
   selector: 'app-car',
@@ -18,7 +18,7 @@ export class CarComponent {
     this.store.dispatch(new DeleteCar(car))
   }
 
-  onBuy(){
-    this.car.isSold = true;
+  onBuy(car){
+    this.store.dispatch(new BuyCar(car))
   }
 }

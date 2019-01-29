@@ -8,6 +8,6 @@
   <p class="mb-1">{{car.model}}</p>
 
   <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(car)">Delete</button>
-  <button type="button" class="btn btn-success btn-sm" [disabled]="car.isSold" (click)="onBuy()">Buy</button>
+  <button type="button" class="btn btn-success btn-sm" [disabled]="car.isSold" (click)="onBuy(car)">Buy</button>
 </div>
 

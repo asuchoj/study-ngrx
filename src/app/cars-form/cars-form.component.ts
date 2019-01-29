@@ -5,7 +5,8 @@ import * as moment from 'moment';
 import {AppState} from '../redux/app.state';
 
 import {Car} from '../car.model';
-import {AddCar} from '../redux/cars.action';
+import {AddCar, LoadCars} from '../redux/cars.action';
+import {CarsService} from '../cars.service';
 
 @Component({
   selector: 'app-cars-form',
@@ -18,7 +19,10 @@ export class CarsFormComponent {
 
   id: number = 2;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    private carsService: CarsService
+  ) {}
 
   onAdd(){
     if(this.carModel.length === 0 || this.carName.length === 0 ) return;
@@ -34,6 +38,8 @@ export class CarsFormComponent {
   }
 
   onLoad(){
-    //todo
+    this.carsService.loadCars().subscribe(cars => {
+      this.store.dispatch(new LoadCars(cars))
+    })
   }
 }

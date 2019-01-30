@@ -15,4 +15,16 @@ export class CarsService {
   loadCars(): Observable<Car[]>{
     return this.http.get<Car[]>(CarsService.BASE_URL + 'cars')
   }
+
+  addCar(car: Car): Observable<Car> {
+    return this.http.post<Car>(CarsService.BASE_URL + 'cars', car)
+  }
+
+  deleteCar(car: Car): Observable<any>{
+    return this.http.delete<any>(CarsService.BASE_URL + 'cars/' + car.id)
+  }
+
+  updateCar(car: Car): Observable<any>{
+    return this.http.put<any>(CarsService.BASE_URL + 'cars/' + car.id, car)
+  }
 }

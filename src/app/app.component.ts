@@ -5,6 +5,7 @@ import {Store} from '@ngrx/store';
 
 import {Cars} from './car.model';
 import {AppState} from './redux/app.state';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,10 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>){}
 
   ngOnInit() {
-    this.carState = this.store.select('carPage');
+    console.log(1);
+
+    this.carState = this.store.select('carPage').pipe(
+      tap(c => console.log(c))
+    );
   }
 }
